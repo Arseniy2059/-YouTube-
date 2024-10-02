@@ -39,7 +39,7 @@ class UrTube:
         self.videos = []
         self.current_user = None
 
-    def rpegister(self, nickname, password, age):
+    def register(self, nickname, password, age):
         new_user = User(nickname, password, age)
         if new_user not in self.users:
             self.users.append(new_user)
@@ -69,7 +69,7 @@ class UrTube:
         return files
 
     def watch_video(self, film: str):
-        if self.current_user in None:
+        if self.current_user is None:
             print('Войдите в аккаунт, чтобы смотреть видео')
         else:
             for video in self.videos:
@@ -77,7 +77,7 @@ class UrTube:
                     print("Вам нет 18 лет, пожалуйста покиньте страницу")
                     return
                 if film in video.title:
-                    for i in range(1, 11):
+                    for i in range(1, video.duration + 1):
                         print(i, end=' ')
                         time.sleep(1)
                         video.time_now += 1
